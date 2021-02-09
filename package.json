@@ -1,5 +1,5 @@
 {
-  "name": "budget-app",
+  "name": "budget-tracker",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/coding-boot-camp/unit18hw.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/coding-boot-camp/unit18hw/issues"
   },
