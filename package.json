@@ -8,21 +8,21 @@
     "start": "node server.js",
     "lite-server": "lite-server"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/coding-boot-camp/unit18hw.git"
-  },
   "author": "",
   "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/coding-boot-camp/unit18hw/issues"
-  },
-  "homepage": "https://github.com/coding-boot-camp/unit18hw#readme",
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "lite-server": "^2.5.3",
     "mongoose": "^5.5.15",
     "morgan": "^1.9.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ducktrshessami/budget-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ducktrshessami/budget-tracker/issues"
+  },
+  "homepage": "https://github.com/ducktrshessami/budget-tracker#readme"
 }
