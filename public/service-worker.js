@@ -1,13 +1,13 @@
 const FILES = [
     "/",
-    "/index.html",
     "/assets/css/styles.css",
-    "/assets/js/index.js",
     "/assets/icons/icon-192x192.png",
     "/assets/icons/icon-512x512.png",
+    "/assets/js/index.js",
+    "/assets/js/indexed.js",
     "/assets/js/register-sw.js",
-    "/manifest.webmanifest",
-    "assets/js/indexed.js"
+    "/index.html",
+    "/manifest.webmanifest"
 ];
 
 const STATIC_CACHE = "static-cache";
