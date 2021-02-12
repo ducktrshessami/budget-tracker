@@ -4,8 +4,14 @@ const STATIC_CACHE = "";
 const DATA_CACHE = "";
 
 self.addEventListener("install", function (event) {
-    event.waitUntil(caches.open(DATA_CACHE).then((cache) => cache.add("/api/transaction")));
-    event.waitUntil(caches.open(STATIC_CACHE).then((cache) => cache.addAll(FILES)));
+    event.waitUntil(caches.open(DATA_CACHE)
+        .then((cache) => cache.add("/api/transaction"))
+        .catch(console.error)
+    );
+    event.waitUntil(caches.open(STATIC_CACHE)
+        .then((cache) => cache.addAll(FILES))
+        .catch(console.error)
+    );
     self.skipWaiting();
 });
 
@@ -16,6 +22,7 @@ self.addEventListener("activate", function (event) {
                 return caches.delete(key);
             }
         })))
+        .catch(console.error)
     );
     self.clients.claim();
 });
@@ -31,12 +38,15 @@ self.addEventListener("fetch", function (event) {
                     return response;
                 })
                 .catch(() => cache.match(event.request))
-            ));
+            )
+            .catch(console.error)
+        );
     }
     else {
         event.respondWith(caches.open(STATIC_CACHE)
             .then(cache => cache.match(event.request))
             .then(response => response || fetch(event.request))
+            .catch(console.error)
         );
     }
 });
