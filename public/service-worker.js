@@ -4,7 +4,9 @@ const FILES = [
     "/assets/css/styles.css",
     "/assets/js/index.js",
     "/assets/icons/icon-192x192.png",
-    "/assets/icons/icon-512x512.png"
+    "/assets/icons/icon-512x512.png",
+    "/assets/js/register-sw.js",
+    "/manifest.webmanifest"
 ];
 
 const STATIC_CACHE = "static-cache";
@@ -25,7 +27,7 @@ self.addEventListener("install", function (event) {
 self.addEventListener("activate", function (event) {
     event.waitUntil(caches.keys()
         .then(keyList => Promise.all(keyList.map(key => {
-            if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
+            if (key !== STATIC_CACHE && key !== DATA_CACHE) {
                 return caches.delete(key);
             }
         })))
@@ -37,7 +39,7 @@ self.addEventListener("activate", function (event) {
 self.addEventListener("fetch", function (event) {
     if (event.request.url.includes("/api/")) {
         event.respondWith(caches.open(DATA_CACHE)
-            .then(cache => fetch()
+            .then(cache => fetch(event.request)
                 .then(response => {
                     if (response.status == 200) {
                         cache.put(event.request.url, response.clone());
