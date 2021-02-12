@@ -1,7 +1,7 @@
 const FILES = [];
 
-const STATIC_CACHE = "";
-const DATA_CACHE = "";
+const STATIC_CACHE = "static-cache";
+const DATA_CACHE = "data-cache";
 
 self.addEventListener("install", function (event) {
     event.waitUntil(caches.open(DATA_CACHE)
