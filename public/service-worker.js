@@ -23,7 +23,7 @@ self.addEventListener("install", function (event) {
 });
 
 self.addEventListener("activate", function (event) {
-    evt.waitUntil(caches.keys()
+    event.waitUntil(caches.keys()
         .then(keyList => Promise.all(keyList.map(key => {
             if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
                 return caches.delete(key);
