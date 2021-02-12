@@ -9,19 +9,25 @@ function saveRecord(record) {
         .add(record);
 }
 
-function checkDb() {
-    db.transaction(transactionName, "readwrite")
-        .objectStore(transactionName)
-        .getAll()
-        .onsuccess = function () {
-            fetch("/api/transaction/bulk", {
-                method: "post",
-                body: JSON.stringify(this.result),
-                headers: { "Content-Type": "application/json" }
-            })
-                .then(clearDb);
-        };
+function getRecords() {
+    return new Promise((resolve, reject) => {
+        let get = db.transaction(transactionName, "readwrite")
+            .objectStore(transactionName)
+            .getAll();
+        get.onsuccess = function () {
+            resolve(this.result);
+        }
+        get.onerror = (event) => reject(event.target.errorCode);
+    });
+}
 
+function checkDb() {
+    getRecords()
+        .then(records => fetch("/api/transaction/bulk", {
+            method: "post",
+            body: records
+        }))
+        .then(clearDb);
 }
 
 function clearDb() {
