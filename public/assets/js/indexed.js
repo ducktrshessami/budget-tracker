@@ -23,12 +23,16 @@ function getRecords() {
 
 function checkDb() {
     getRecords()
-        .then(records => fetch("/api/transaction/bulk", {
-            method: "post",
-            body: JSON.stringify(records),
-            headers: { "Content-Type": "application/json" }
-        }))
-        .then(clearDb);
+        .then(records => {
+            if (records) {
+                fetch("/api/transaction/bulk", {
+                    method: "post",
+                    body: JSON.stringify(records),
+                    headers: { "Content-Type": "application/json" }
+                })
+                    .then(clearDb);
+            }
+        })
 }
 
 function clearDb() {
