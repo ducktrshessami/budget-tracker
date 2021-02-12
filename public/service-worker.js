@@ -3,15 +3,17 @@ const FILES = [];
 const STATIC_CACHE = "";
 const DATA_CACHE = "";
 
-self.addEventListener("install", function(event) {
-    // foo
+self.addEventListener("install", function (event) {
+    event.waitUntil(caches.open(DATA_CACHE).then((cache) => cache.add("/api/transaction")));
+    event.waitUntil(caches.open(STATIC_CACHE).then((cache) => cache.addAll(FILES)));
+    self.skipWaiting();
 });
 
-self.addEventListener("activate", function(event) {
+self.addEventListener("activate", function (event) {
     // bar
 });
 
-self.addEventListener("fetch", function(event) {
+self.addEventListener("fetch", function (event) {
     if (event.request.url.includes("/api/")) {
         event.respondWith(caches.open(DATA_CACHE)
             .then(cache => fetch()
@@ -22,7 +24,7 @@ self.addEventListener("fetch", function(event) {
                     return response;
                 })
                 .catch(() => cache.match(event.request))
-        ));
+            ));
     }
     else {
         event.respondWith(caches.open(STATIC_CACHE)
