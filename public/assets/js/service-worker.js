@@ -1,10 +1,10 @@
 const FILES = [
     "/",
     "/index.html",
-    "/styles.css",
-    "/index.js",
-    "/icons/icon-192x192.png",
-    "/icons/icon-512x512.png"
+    "/assets/css/styles.css",
+    "/assets/js/index.js",
+    "/assets/icons/icon-192x192.png",
+    "/assets/icons/icon-512x512.png"
 ];
 
 const STATIC_CACHE = "static-cache";
