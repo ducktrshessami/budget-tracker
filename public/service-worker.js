@@ -6,7 +6,8 @@ const FILES = [
     "/assets/icons/icon-192x192.png",
     "/assets/icons/icon-512x512.png",
     "/assets/js/register-sw.js",
-    "/manifest.webmanifest"
+    "/manifest.webmanifest",
+    "assets/js/indexed.js"
 ];
 
 const STATIC_CACHE = "static-cache";
