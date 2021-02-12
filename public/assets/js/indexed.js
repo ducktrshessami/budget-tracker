@@ -25,7 +25,8 @@ function checkDb() {
     getRecords()
         .then(records => fetch("/api/transaction/bulk", {
             method: "post",
-            body: records
+            body: JSON.stringify(records),
+            headers: { "Content-Type": "application/json" }
         }))
         .then(clearDb);
 }
