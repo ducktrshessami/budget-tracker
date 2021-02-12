@@ -10,7 +10,14 @@ self.addEventListener("install", function (event) {
 });
 
 self.addEventListener("activate", function (event) {
-    // bar
+    evt.waitUntil(caches.keys()
+        .then(keyList => Promise.all(keyList.map(key => {
+            if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
+                return caches.delete(key);
+            }
+        })))
+    );
+    self.clients.claim();
 });
 
 self.addEventListener("fetch", function (event) {
