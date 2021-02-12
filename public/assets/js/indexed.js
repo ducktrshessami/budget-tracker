@@ -24,7 +24,7 @@ function getRecords() {
 function checkDb() {
     getRecords()
         .then(records => {
-            if (records) {
+            if (records.length) {
                 fetch("/api/transaction/bulk", {
                     method: "post",
                     body: JSON.stringify(records),
