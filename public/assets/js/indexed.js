@@ -41,6 +41,14 @@ function clearDb() {
         .clear();
 }
 
+function awaitSuccess() {
+    return new Promise((resolve, reject) => {
+        connection.addEventListener("success", function() {
+            resolve();
+        });
+    });
+}
+
 connection.onupgradeneeded = function (event) {
     let db = event.target.result;
     db.createObjectStore(transactionName, { autoIncrement: true });

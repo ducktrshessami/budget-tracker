@@ -1,13 +1,15 @@
 let transactions = [];
 let myChart;
 
-fetch("/api/transaction")
-  .then(response => {
-    return response.json();
-  })
+awaitSuccess()
+  .then(() => getRecords())
+  .then(data => data.reverse())
+  .then(data => transactions = data)
+  .then(() => fetch("/api/transaction"))
+  .then(response => response.json())
   .then(data => {
     // save db data on global variable
-    transactions = data;
+    transactions = transactions.concat(data);
 
     populateTotal();
     populateTable();
